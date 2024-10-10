@@ -1,7 +1,4 @@
 node_modules
 dev
 dist
-src
 Gruntfile copy.js
-package-lock.json
-package.json
