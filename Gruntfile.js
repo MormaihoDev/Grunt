@@ -62,6 +62,18 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        htmlmin: {
+            dist: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: {
+                    'prebuild/index.html': 'src/index.html'
+                }
+            }
+        },
+        clean: ['prebuild'],
         uglify: {
             target: {
                 files: {
@@ -73,7 +85,9 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-replace');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['less:production', 'replace:dist', 'uglify']);
+    grunt.registerTask('default', ['less:production', 'htmlmin:dist', 'replace:dist', 'clean', 'uglify']);
 }
